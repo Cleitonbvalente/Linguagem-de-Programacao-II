@@ -1,0 +1,95 @@
+import java.util.Scanner; //Passo 1
+public class Main {
+    public static void main(String[] args) {
+        Scanner leitor = new Scanner(System.in); // Cria um objeto Scanner para ler a entrada do usuário.
+System.out.print("Digite um número: ");  // Solicita que o usuário digite um número.
+int a = leitor.nextInt();               // Lê e armazena o número digitado pelo usuário.
+System.out.println("Marciano"+a);       // Exibe "Marciano" seguido pelo número digitado.
+
+
+Scanner leitor = new Scanner(System.in);       // Cria um objeto Scanner para ler entradas do usuário.
+System.out.println("Digite as polegadas: ");   // Solicita que o usuário digite um valor em polegadas.
+float pol = leitor.nextFloat();               // Lê o valor digitado como número decimal.
+float cent = pol * 2.54f;                     // Converte as polegadas para centímetros.
+System.out.println("Centimetros: "+cent+"cm");// Exibe o valor convertido em centímetros.
+
+
+String a = "Maria";                            // Define a string `a` como "Maria".
+String b = "maria";                            // Define a string `b` como "maria".
+boolean resultado = a.equals(b);               // Compara se `a` e `b` são exatamente iguais (sensível a maiúsculas e minúsculas).
+System.out.println(resultado);                 // Exibe `false`, já que "Maria" é diferente de "maria".
+
+
+String a = "Maria";                            // Define a string `a` como "Maria".
+System.out.println(a.length());                // Exibe o número de caracteres na string `a` (neste caso, 5).
+
+
+String a = "Maria";                            // Define a string `a` como "Maria".
+System.out.println(a.toUpperCase());           // Converte a string para letras maiúsculas e exibe "MARIA".
+
+
+String a = "Maria";                            // Define a string `a` como "Maria".
+System.out.println(a.toLowerCase());           // Converte a string para letras minúsculas e exibe "maria".
+
+
+import java.util.Scanner;                        // Importa a classe Scanner (não está sendo utilizada aqui).
+String a = "Maria";                              // Define a string `a` com o valor "Maria".
+String b = "maria";                              // Define a string `b` com o valor "maria".
+System.out.println(a.charAt(1));                 // Exibe o caractere na posição 1 da string `a` (neste caso, "a").
+
+
+import java.util.Scanner;                        // Importa a classe Scanner (não está sendo utilizada aqui).
+String a = "Maria";                              // Define a string `a` com o valor "Maria".
+String b = "maria";                              // Define a string `b` com o valor "maria".
+if(a.equals(b))                                  // Compara se `a` e `b` são exatamente iguais (sensível a maiúsculas/minúsculas).
+    System.out.println("Iguais");                // Exibe "Iguais" se forem iguais.
+else                                             // Caso contrário...
+    System.out.println("Diferentes");            // Exibe "Diferentes".
+
+
+import java.util.Scanner;                      // Importa a classe Scanner para permitir a entrada de dados do usuário.
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner leitor = new Scanner(System.in); // Cria um objeto Scanner para capturar entradas do teclado.
+
+        System.out.println("Idade: ");          // Exibe a mensagem solicitando a idade do usuário.
+        int idade = leitor.nextInt();           // Lê a idade informada pelo usuário e a armazena na variável 'idade'.
+
+        System.out.println("Sexo: ");           // Exibe a mensagem solicitando o sexo do usuário.
+        String sexo = leitor.next();            // Lê o sexo informado pelo usuário e o armazena na variável 'sexo'.
+
+        // Verifica as condições para classificação
+        if (idade >= 18 && sexo.toLowerCase().equals("f")) {  
+            System.out.println("Classificado!"); // Exibe "Classificado!" se a idade for maior ou igual a 18 e o sexo for "f".
+        } else {
+            System.out.println("Desclassificado!"); // Exibe "Desclassificado!" caso as condições não sejam atendidas.
+        }
+    }
+}
+
+
+import java.util.Scanner; // Importa a classe Scanner para permitir a entrada de dados pelo teclado
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner leitor = new Scanner(System.in); // Cria um objeto Scanner para capturar as entradas do usuário
+        System.out.println("Digite um dia da semana: "); // Exibe uma mensagem pedindo ao usuário para inserir um número
+        int dia = leitor.nextInt(); // Lê o número digitado pelo usuário e o armazena na variável 'dia'
+        
+        // Estrutura switch para verificar o número digitado e exibir o dia correspondente
+        switch (dia) {
+            case 1: 
+                System.out.println("Domingo"); // Se o número for 1, exibe "Domingo"
+                break; // Sai do switch após executar este caso
+            case 2: 
+                System.out.println("Segunda"); // Se o número for 2, exibe "Segunda"
+                break; // Sai do switch após executar este caso
+            case 3: 
+                System.out.println("Terça"); // Se o número for 3, exibe "Terça"
+                break; // Sai do switch após executar este caso
+            default: 
+                System.out.println("Opção inválida!"); // Para qualquer outro número, exibe "Opção inválida!"
+        }
+    }
+}
