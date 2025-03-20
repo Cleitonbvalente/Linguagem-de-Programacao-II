@@ -68,3 +68,115 @@ public class Main {
         }
     }
 }
+
+
+import java.util.ArrayList;
+import java.util.Scanner;
+//Faça um programa que possui um menu com as opções
+//De ler um nome ou sair.
+//Salva todos os nomes em uma lista até escolher sair.
+//Em seguida, digite um nome que quer exluir
+//E exclua.
+public class Main {
+    public static void main(String[] args) {
+        Scanner leitor = new Scanner(System.in);
+        ArrayList<String> lista = new ArrayList();
+        int opcao = 0;
+        do {
+            System.out.println("Menu");
+            System.out.println("1 - Adicionar um nome");
+            System.out.println("2 - Sair");
+            System.out.println("Escolha uma opção: ");
+            opcao = leitor.nextInt();
+            switch (opcao) {
+                case 1:
+                    lista.add(leitor.next());
+                    break;
+                case 2:
+                    System.out.println("Adeus!");
+                    break;
+                default:
+                    System.out.println("Opção inválida!");
+            }
+        } while (opcao != 2);
+
+        System.out.println("Nome: ");
+        String nome = leitor.next();
+        for (int i = 0; i < lista.size(); i++) {
+            if (nome.equals(lista.get(i))) {
+                lista.remove(i);
+            }
+        }
+    }
+}
+
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner leitor = new Scanner(System.in);
+        int resultado = somar(5, 4);
+        System.out.println(resultado);
+    }
+
+    public static int somar(int n1, int n2){
+        return n1+n2;
+    }
+}
+
+
+import java.sql.SQLOutput;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+    static Scanner leitor = new Scanner(System.in);
+    public static void main(String[] args) {
+        int resultado = Main.subtrair();
+        System.out.println(resultado);
+    }
+
+    public static int somar(int n1, int n2){
+        return n1+n2;
+    }
+
+    public static int subtrair() {
+        System.out.println("N1: ");
+        int n1 = leitor.nextInt();
+        System.out.println("N2: ");
+        int n2 = leitor.nextInt();
+        return n1 - n2;
+    }
+}
+
+import java.sql.SQLOutput;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+    static Scanner leitor = new Scanner(System.in);
+    public static void main(String[] args) {
+        par(4);
+    }
+
+    public static int somar(int n1, int n2){
+        return n1+n2;
+    }
+
+    public static int subtrair() {
+        System.out.println("N1: ");
+        int n1 = leitor.nextInt();
+        System.out.println("N2: ");
+        int n2 = leitor.nextInt();
+        return n1 - n2;
+    }
+
+    public static void par(int numero){
+        if (numero%2 == 0)
+            System.out.println("Par");
+        else
+            System.out.println("Impar");
+    }
+}
