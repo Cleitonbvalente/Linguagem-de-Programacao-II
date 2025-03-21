@@ -1,0 +1,61 @@
+// Define a classe Pessoa
+public class Pessoa {
+    // Declaração de um atributo privado do tipo String para armazenar o nome
+    private String nome;
+    // Declaração de um atributo privado do tipo int para armazenar a idade
+    private int idade;
+
+    // Construtor da classe Pessoa que inicializa os atributos nome e idade
+    public Pessoa(String nome, int idade) {
+        this.nome = nome; // Atribui o valor recebido ao atributo nome
+        this.idade = idade; // Atribui o valor recebido ao atributo idade
+    }
+
+    // Método para exibir as informações da pessoa
+    public void exibirInformacoes() {
+        // Imprime o nome da pessoa no console
+        System.out.println("Nome: " + nome);
+        // Imprime a idade da pessoa no console
+        System.out.println("Idade: " + idade);
+    }
+
+    // Getter para acessar o valor do atributo nome
+    public String getNome() {
+        return nome; // Retorna o valor do atributo nome
+    }
+
+    // Setter para modificar o valor do atributo nome
+    public void setNome(String nome) {
+        this.nome = nome; // Atribui o valor recebido ao atributo nome
+    }
+
+    // Getter para acessar o valor do atributo idade
+    public int getIdade() {
+        return idade; // Retorna o valor do atributo idade
+    }
+
+    // Setter para modificar o valor do atributo idade
+    public void setIdade(int idade) {
+        this.idade = idade; // Atribui o valor recebido ao atributo idade
+    }
+}
+
+// Define a classe principal onde o programa será executado
+public class Main {
+    // Método main: ponto de entrada do programa
+    public static void main(String[] args) {
+        // Criação de um objeto da classe Pessoa com valores iniciais
+        Pessoa pessoa1 = new Pessoa("Carlos", 25);
+
+        // Chamada do método para exibir informações da pessoa
+        pessoa1.exibirInformacoes();
+
+        // Modifica o valor do nome da pessoa usando o setter
+        pessoa1.setNome("Ana");
+        // Modifica o valor da idade da pessoa usando o setter
+        pessoa1.setIdade(30);
+
+        // Chamada do método novamente para exibir as informações atualizadas
+        pessoa1.exibirInformacoes();
+    }
+}
