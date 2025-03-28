@@ -1,0 +1,158 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner ler = new Scanner(System.in);
+
+        OperacaoMatematica soma = new Soma();
+        OperacaoMatematica subtracao = new Subtracao();
+        OperacaoMatematica multiplicacao = new Multiplicacao();
+        OperacaoMatematica divisao = new Divisao();
+        
+        int escolher = 0, n1 = 0, n2 = 0;
+
+        do {
+            System.out.println("Menu");
+            System.out.println("1 - Soma");
+            System.out.println("2 - Subtracao");
+            System.out.println("3 - Multiplicação");
+            System.out.println("4 - Divisão");
+            System.out.println("0 - Sair");
+
+
+            escolher = ler.nextInt();
+
+            switch (escolher) {
+                case 0:
+                    System.out.println("Você saiu");
+                    break;
+
+                case 1:
+                    System.out.println("Digite um número: ");
+                    n1 = ler.nextInt();
+                    System.out.println("Digite um número: ");
+                    n2 = ler.nextInt();
+                    System.out.println(n1 + "+" + n2 + "=" + soma.calcula(n1, n2));
+                    break;
+
+                case 2:
+                    System.out.println("Digite um número: ");
+                    n1 = ler.nextInt();
+                    System.out.println("Digite um número: ");
+                    n2 = ler.nextInt();
+                    System.out.println(n1 + "-" + n2 + "=" + subtracao.calcula(n1, n2));
+                    break;
+
+                case 3:
+                    System.out.println("Digite um número: ");
+                    n1 = ler.nextInt();
+                    System.out.println("Digite um número: ");
+                    n2 = ler.nextInt();
+                    System.out.println(n1 + "*" + n2 + "=" + multiplicacao.calcula(n1, n2));
+                    break;
+
+                case 4:
+                    System.out.println("Digite um número: ");
+                    n1 = ler.nextInt();
+                    System.out.println("Digite um número: ");
+                    n2 = ler.nextInt();
+                    System.out.println(n1 + "/" + n2 + "=" + divisao.calcula(n1, n2));
+                    break;
+                default:
+                    System.out.println("Tente novamente");
+            }
+        }while(escolher != 0);
+    }
+}
+
+
+
+public interface OperacaoMatematica {
+    public int calcula(int a, int b);
+}
+
+
+public class Soma implements OperacaoMatematica{
+
+    @Override
+    public int calcula(int a, int b) {
+        return a+b;
+    }
+}
+
+
+public class Subtracao implements OperacaoMatematica{
+    @Override
+    public int calcula(int a, int b) {
+        return a-b;
+    }
+}
+
+
+public class Multiplicacao implements OperacaoMatematica{
+
+    @Override
+    public int calcula(int a, int b) {
+        return a*b;
+    }
+}
+
+
+public class Divisao implements OperacaoMatematica {
+
+    @Override
+    public int calcula(int a, int b) {
+        return a/b;
+    }
+}
+
+
+public interface Figura {
+    void calcularArea();
+    void calcularPerimetro();
+}
+
+
+public class Retangulo implements Figura {
+    private float base;
+    private float altura;
+
+    Retangulo(float base, float altura){
+        this.base = base;
+        this.altura = altura;
+    }
+
+    @Override
+    public void calcularArea() {
+        System.out.println(base*altura);
+
+    }
+
+    @Override
+    public void calcularPerimetro() {
+        System.out.println(2*base + 2*altura);
+
+    }
+}
+
+
+public class Quadrado implements Figura {
+
+    private float lado;
+
+    Quadrado(float lado){
+        this.lado = lado;
+    }
+
+    @Override
+    public void calcularArea() {
+        System.out.println(lado*lado);
+
+    }
+
+    @Override
+    public void calcularPerimetro() {
+        System.out.println(4*lado);
+
+    }
+}
