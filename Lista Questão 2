@@ -1,0 +1,42 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner ler = new Scanner(System.in);
+
+        System.out.println("Digite qual produto você deseja comprar: ");
+        int produto, quantidade;
+        double preco = 0.0, total =0;
+
+        System.out.println("Digite o produto que você deseja comprar (1 - 4) e a quantidade vendida, caso deseje sair, aperte o digito 0: ");
+        while(true) {
+            produto = ler.nextInt();
+            if (produto == 0) {
+                break;
+            }
+            quantidade = ler.nextInt();
+            switch (produto) {
+                case 1:
+                    preco = 2.98;
+                    System.out.println("O total de compras do produto 1 foi de R$" + preco*quantidade);
+                    break;
+                case 2:
+                    preco = 4.50;
+                    System.out.println("O total de compras do produto 2 foi de R$" + preco*quantidade);
+                    break;
+                case 3:
+                    preco = 9.98;
+                    System.out.println("O total de compras do produto 3 foi de R$" + preco*quantidade);
+                    break;
+                case 4:
+                    preco = 4.49;
+                    System.out.println("O total de compras do produto 4 foi de R$" + preco*quantidade);
+                    break;
+                default:
+                    System.out.println("Número de produto inválido");
+                    break;
+            }
+            total += preco * quantidade;
+        }
+        System.out.println("O total em compras foi de R$" + total);
+    }
+}
