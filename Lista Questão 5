@@ -1,0 +1,116 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        ArrayList<Jogo> jogos = new ArrayList();
+        Jogo j1 = new Fisico("God of War", 300, "123");
+        Jogo j2 = new Digital("Ludo", 1000, 345);
+
+        jogos.add(j1);
+        jogos.add(j2);
+        jogos.add(new Fisico("Lara", 150, "LK65"));
+
+        System.out.println("1 - Digital");
+        System.out.println("2 - Físico");
+        System.out.println("3 - Todos");
+        Scanner leitor = new Scanner(System.in);
+        int opcao = leitor.nextInt();
+        switch (opcao) {
+            case 3: for(int i=0; i<jogos.size(); i++) {
+                jogos.get(i).exibirJogo();
+                System.out.println("--------");
+            } break;
+            case 2:
+                    for(int i=0; i<jogos.size();i++){
+                        if(jogos.get(i) instanceof Fisico){
+                            jogos.get(i).exibirJogo();
+                            System.out.println("--------");
+                        }
+                    } break;
+            case 1:
+                for(int i=0; i<jogos.size();i++){
+                    if(jogos.get(i) instanceof Digital){
+                        jogos.get(i).exibirJogo();
+                        System.out.println("--------");
+                    }
+                } break;
+        }
+    }
+}
+
+
+public abstract class Jogo {
+    private String titulo;
+    private double preco;
+
+    //Construtor
+    Jogo(String titulo, double preco){
+        this.titulo = titulo;
+        this.preco = preco;
+    }
+
+    //Gets e sets
+    public String getTitulo(){
+        return titulo;
+    }
+    public void setTitulo(String titulo){
+        this.titulo = titulo;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+    public void setPreco(double preco){
+        this.preco = preco;
+    }
+
+    public abstract  void exibirJogo();
+}
+
+
+public class Digital extends Jogo{
+    private int codigo;
+
+    Digital(String titulo, double preco, int codigo){
+        super(titulo, preco);
+        this.codigo = codigo;
+    }
+
+    public int getCodigo(){
+        return codigo;
+    }
+    public void setCodigo(int codigo){
+        this.codigo = codigo;
+    }
+
+    @Override
+    public void exibirJogo() {
+        System.out.println("Código: "+codigo);
+        System.out.println("Título: "+super.getTitulo());
+        System.out.println("Preço: "+super.getPreco());
+    }
+}
+
+
+public class Fisico extends  Jogo {
+    private String lote;
+
+    Fisico(String titulo, double preco, String lote){
+        super(titulo, preco);
+        this.lote = lote;
+    }
+
+    public String getLote(){
+        return lote;
+    }
+    public void setLote(String lote){
+        this.lote = lote;
+    }
+    @Override
+    public void exibirJogo() {
+        System.out.println("Lote: "+lote);
+        System.out.println("Título: "+super.getTitulo());
+        System.out.println("Preço: "+super.getPreco());
+    }
+}
