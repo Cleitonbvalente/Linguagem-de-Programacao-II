@@ -1,0 +1,77 @@
+import javax.swing.plaf.synth.SynthOptionPaneUI;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner ler = new Scanner(System.in);
+        ArrayList<Produto> produtos = new ArrayList<>();
+
+        for(int x=0; x<3; x++){
+            System.out.println("Digite o nome do produto: ");
+            String nome = ler.nextLine();
+            System.out.println("Digite o peso do produto: ");
+            double peso = ler.nextDouble();
+            ler.nextLine();
+            System.out.println("Digite o valor do produto: ");
+            double valor = ler.nextDouble();
+            ler.nextLine();
+            produtos.add(new Produto(nome, peso, valor));
+        }
+
+        for (Produto produto : produtos){
+            System.out.println("Nome: "+ produto.getNome());
+            System.out.println("Peso: "+ produto.getPeso());
+            System.out.println("Valor: "+ produto.getValor());
+            System.out.println("Valor do frete: "+ produto.calcularFrete());
+            System.out.println("Valor total: "+ produto.calcularValorTotal());
+            System.out.println("------------------------");
+
+        }
+
+    }
+}
+
+
+public class Produto implements Transportavel{
+    private String nome;
+    private double peso;
+    private double valor;
+    Produto(String nome, double peso, double valor){
+        this.nome = nome;
+        this.peso = peso;
+        this.valor = valor;
+    }
+    public void setNome(String nome){
+        this.nome = nome;
+    }
+    public String getNome(){
+        return nome;
+    }
+    public void setPeso(double peso){
+        this.peso = peso;
+    }
+    public double getPeso(){
+        return peso;
+    }
+    public void setValor(double valor){
+        this.valor = valor;
+    }
+    public double getValor(){
+        return valor;
+    }
+
+    @Override
+    public double calcularFrete() {
+        return peso*0.5;
+    }
+
+    public double calcularValorTotal(){
+        return valor+calcularFrete();
+    }
+}
+
+
+public interface Transportavel {
+    double calcularFrete();
+}
