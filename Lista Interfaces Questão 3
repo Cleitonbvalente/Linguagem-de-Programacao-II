@@ -1,0 +1,69 @@
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        ArrayList<Manobrar> listaMotos = new ArrayList<>();
+        listaMotos.add(new Moto("ABC-1234", "Honda"));
+        listaMotos.add(new Moto("DEF-5678", "Yamarra"));
+        listaMotos.add(new Moto("GHI - 9123", "Bis"));
+
+        for (Manobrar item : listaMotos){
+            item.estacionar();
+            if (item instanceof Moto){
+                ((Moto) item).exibirDados();
+            }
+        }
+    }
+}
+
+
+public interface Manobrar {
+    void estacionar();
+}
+
+
+public class Veiculo implements Manobrar {
+    private String placa;
+    private String marca;
+    Veiculo(String placa, String marca){
+        this.placa = placa;
+        this.marca = marca;
+    }
+    public void setPlaca(String placa){
+        this.placa = placa;
+    }
+    public String getPlaca(){
+        return placa;
+    }
+
+    public void setMarca(String marca){
+        this.marca = marca;
+    }
+    public String getMarca(){
+        return marca;
+    }
+    @Override
+    public void estacionar() {
+
+    }
+
+    public void exibirDados() {
+        System.out.println("Placa: "+placa);
+        System.out.println("Marca: "+marca);
+
+    }
+}
+
+
+public class Moto extends Veiculo{
+    Moto(String placa, String marca) {
+        super(placa, marca);
+    }
+
+    public void estacionar(){
+        System.out.println("Moto "+getPlaca()+ " estacionada com cavalete");
+    }
+    public void exibirDados(){
+        System.out.println("Moto "+getPlaca()+ " Marca "+getMarca());
+    }
+}
