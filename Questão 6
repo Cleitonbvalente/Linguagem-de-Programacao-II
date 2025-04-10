@@ -1,0 +1,84 @@
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        ArrayList<Produto> produtos = new ArrayList<>();
+        Produto p1 = new Smarphone("Nokia", 2500,500);
+        produtos.add(p1);
+        produtos.add(new Notebbok("Asus",5200,1));
+
+    for(Produto p:produtos) {
+        if (p.getEstoque() > 0 && p instanceof Smarphone)
+            p.exibirProduto();
+    }
+    }
+}
+
+
+public abstract class Produto {
+    private String nome;
+    private double preco;
+    private int estoque;
+
+    Produto(String nome, double preco, int estoque){
+        this.nome = nome;
+        this.preco = preco;
+        this.estoque = estoque;
+    }
+
+    public void setNome(String nome){
+        this.nome = nome;
+    }
+    public String getNome(){
+        return nome;
+    }
+    public void setPreco(double Preco){
+        this.preco = preco;
+    }
+    public double getPreco(){
+        return preco;
+    }
+    public void setEstoque(int estoque){
+        this.estoque = estoque;
+    }
+    public int getEstoque(){
+        return estoque;
+    }
+
+    abstract double calcularDesconto();
+    public void exibirProduto(){
+        System.out.println("Nome: "+nome);
+        System.out.println("Preço: "+preco);
+        System.out.println("Estoque: "+estoque);
+    }
+}
+
+public class Smarphone extends Produto {
+    Smarphone(String nome, double preco, int estoque) {
+        super(nome, preco, estoque);
+    }
+
+    @Override
+    double calcularDesconto() {
+        double desconto = 0;
+        if(getPreco()>2000)
+            desconto = getPreco() * 0.05;
+        return desconto;
+    }
+}
+
+
+public class Notebbok extends Produto{
+    Notebbok(String nome, double preco, int estoque) {
+        super(nome, preco, estoque);
+    }
+
+    @Override
+    double calcularDesconto() {
+        double desconto = 0;
+        if (getPreco() > 3000)
+            desconto = getPreco() * 0.10;
+        return desconto;
+    }
+}
+
