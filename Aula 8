@@ -1,0 +1,55 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        LocalDate data1 = LocalDate.now();
+        System.out.println(data1);
+
+        LocalDateTime data2 = LocalDateTime.now();
+        System.out.println(data2);
+
+        Instant data3 = Instant.now();
+        System.out.println(data3);
+
+        Date data = new Date();
+        System.out.println(data);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        System.out.println(sdf.format(data));
+
+        String data4 = "12-01-2021 14:15:20";
+        try {
+            System.out.println(sdf.parse(data4));
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        metodo();
+        System.out.println("Programa encerrado!");
+    }
+
+    public static void metodo(){
+        int vetor[] = new int[3];
+        vetor[0] = 10;
+        vetor[1] = 20;
+        vetor[2] = 30;
+        Scanner leitor = new Scanner(System.in);
+        try {
+            System.out.println("Posição: ");
+            int pos = leitor.nextInt();
+            System.out.println(vetor[pos]);
+        }catch(InputMismatchException e){
+            System.out.println("Digite números inteiros!");
+            e.printStackTrace();
+        }catch (ArrayIndexOutOfBoundsException e){
+            System.out.println("Digite números inteiros menores que "+vetor.length);
+            e.printStackTrace();
+        }
+    }
+}
