@@ -53,3 +53,106 @@ public class Main {
         }
     }
 }
+
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) throws ParseException {
+        Scanner leitor = new Scanner(System.in);
+        System.out.println("Número do quarto: ");
+        int num = leitor.nextInt();
+        System.out.println("Check-In: ");
+        String ci = leitor.next();
+        System.out.println("Check-Out: ");
+        String co = leitor.next();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date checkin = sdf.parse(ci);
+        Date checkout = sdf.parse(co);
+        if(checkin.after(checkout)) {
+            System.out.println("Datas inválidas!");
+        }
+        else {
+            Reserva r1 = new Reserva(num, checkin, checkout);
+
+            System.out.println(r1.toString());
+            System.out.println("Novas datas: ");
+            System.out.println("Check-In: ");
+            checkin = sdf.parse(leitor.next());
+            System.out.println("Check-Out: ");
+            checkout = sdf.parse(leitor.next());
+            Date hoje = new Date();
+            if(checkin.before(hoje) || checkout.before(hoje))
+                System.out.println("Escolha datas futuras!");
+            else {
+                r1.atualizarDatas(checkin, checkout);
+                System.out.println(r1.toString());
+            }
+        }
+    }
+}
+
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
+public class Reserva {
+    private int numeroQuarto;
+    private Date checkIn;
+    private Date checkOut;
+
+    public Reserva(int numeroQuarto, Date checkIn, Date checkOut) {
+        this.numeroQuarto = numeroQuarto;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
+    }
+
+    public int getNumeroQuarto() {
+        return numeroQuarto;
+    }
+
+    public Date getCheckIn() {
+        return checkIn;
+    }
+
+    public Date getCheckOut() {
+        return checkOut;
+    }
+
+    public void setNumeroQuarto(int numeroQuarto) {
+        this.numeroQuarto = numeroQuarto;
+    }
+
+    public void setCheckIn(Date checkIn) {
+        this.checkIn = checkIn;
+    }
+
+    public void setCheckOut(Date checkOut) {
+        this.checkOut = checkOut;
+    }
+
+    @Override
+    public String toString() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        return "Reserva{" +
+                "numeroQuarto=" + numeroQuarto +
+                ", checkIn=" + sdf.format(checkIn) +
+                ", checkOut=" + sdf.format(checkOut) +
+                ", duração=" + duracao() +
+                '}';
+    }
+
+    public long duracao(){
+        long dif = checkOut.getTime()-checkIn.getTime();
+        return TimeUnit.DAYS.convert(dif, TimeUnit.MILLISECONDS);
+    }
+
+    public void atualizarDatas(Date checkIn, Date checkOut){
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
+    }
+}
