@@ -1,0 +1,93 @@
+public class Main {
+    public static void main(String[] args) {
+        Conta c1 = new Conta(1234, "João", 1000, 500);
+        c1.mostrarDados();
+        try {
+            c1.sacar(600);
+        }
+        catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
+        try {
+            c1.depositar(-200);
+        }
+        catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
+    }
+}
+
+
+public class Conta {
+    private Integer numero;
+    private String titular;
+    private double saldo;
+    private double limiteSaque;
+
+    public Conta(Integer numero, String titular, double saldo, double limiteSaque){
+    this.numero = numero;
+    this.titular = titular;
+    this.saldo = saldo;
+    this.limiteSaque = limiteSaque;
+    }
+
+    public Integer getNumero() {
+        return numero;
+    }
+
+    public String getTitular() {
+        return titular;
+    }
+
+    public double getSaldo() {
+        return saldo;
+    }
+
+    public double getLimiteSaque() {
+        return limiteSaque;
+    }
+
+    public void setNumero(Integer numero) {
+        this.numero = numero;
+    }
+
+    public void setTitular(String titular) {
+        this.titular = titular;
+    }
+
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
+
+    public void setLimiteSaque(double limiteSaque) {
+        this.limiteSaque = limiteSaque;
+    }
+
+    public void depositar(double valor) {
+        if (valor <= 0) {
+            throw new IllegalArgumentException("O valor do depósito deve ser maior do que 0");
+        }
+        saldo = +valor;
+        System.out.println("Depósito realizado com sucesso. O novo valor é: " + saldo);
+    }
+
+    public void sacar(double valor){
+        if (valor <= 0) {
+            throw new IllegalArgumentException("O valor de saque deve ser maior que 0");
+        }
+        if (valor > saldo) {
+            throw new IllegalArgumentException("Saldo insuficiente");
+        }
+        if (valor > limiteSaque) {
+            throw new IllegalArgumentException("O valor do saque excede o valor do limite de saque");
+        }
+        saldo -= valor;
+        System.out.println("Saque realizado com sucesso. Seu novo saldo é de: "+ saldo);
+    }
+    public void mostrarDados(){
+        System.out.println("Conta: " +numero);
+        System.out.println("Titular: " +titular);
+        System.out.println("Saldo: " +saldo);
+        System.out.println("Limite do saldo: " +limiteSaque);
+    }
+}
