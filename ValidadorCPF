@@ -1,0 +1,18 @@
+public class Main {
+
+    public static void validarCPF(String CPF) {
+        if (CPF == null || !CPF.matches("\\d{11}")) {
+            throw new IllegalArgumentException("CPF inválido");
+        }
+        System.out.println("CPF válido: " + CPF);
+    }
+
+    public static void main(String[] args) {
+        try {
+            validarCPF("12345678901");
+        }
+        catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
+    }
+}
