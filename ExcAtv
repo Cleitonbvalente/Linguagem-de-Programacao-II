@@ -1,0 +1,18 @@
+public class Main {
+    public static void main(String[] args) {
+        int resultado = 0;
+        try {
+            resultado = somar(4, 0);
+            System.out.println("A soma é: " + resultado);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.println("A soma é: " + resultado);
+    }
+
+    public static int somar(int a, int b){
+        if (b==0)
+            throw new IllegalArgumentException("Denominador igual a zero!");
+        return a+b;
+    }
+}
