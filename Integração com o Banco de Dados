@@ -1,0 +1,94 @@
+import db.DB;
+
+import javax.xml.transform.Result;
+import java.sql.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Connection conn = null;
+        PreparedStatement st = null;
+
+        try {
+            conn = DB.getConnection();
+            st = conn.prepareStatement("delete from aluno where matricula=?");
+            st.setInt(1, 4);
+            int linhas = st.executeUpdate();
+            System.out.println("Linhas afetadas: "+linhas);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            DB.closeStatement(st);
+            DB.closeConnection();
+        }
+    }
+}
+
+
+package db;
+
+import java.sql.*;
+
+public class DB {
+    private static Connection conn = null;
+
+    public static Connection getConnection() {
+        if (conn == null) {
+            try {
+                conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/projetojava","root","1234");
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return conn;
+    }
+
+    public static void closeConnection() {
+        if(conn!=null){
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    public static void closeStatement(Statement st){
+        if(st!=null){
+            try {
+                st.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    public static void closeResultSet(ResultSet rs){
+        if(rs!=null){
+            try {
+                rs.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+}
+
+
+create database projetojava;
+use projetojava;
+
+create table aluno(
+matricula int primary key auto_increment,
+nome varchar(100),
+cpf varchar(14),
+dataNascimento date,
+foto longblob);
+
+insert into aluno(nome, cpf, dataNascimento)
+values("Adriano", "000.000.000-00", "1999-12-17"), 
+("Bruna", "111.111.111-11", "2004-02-06"), 
+("Creuza", "222.222.222-22", "1965-08-15");
+
+select *
+from aluno;
